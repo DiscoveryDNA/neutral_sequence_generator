@@ -440,7 +440,7 @@ def main():
   Seqname='sequence'#'NS'+"".join(bb)
 
 #email text
-  fh = open('output.txt', 'w')
+  fh = open('example_outputs/output.txt', 'w')
   fh.write('Congratulations, the sequence you designed was created. \n')
   fh.write('Running time:%f seconds\n' % (t1-t0))
   if (t1-t0)>41999:
@@ -448,14 +448,14 @@ def main():
   fh.write('Total number of motifs (including func. sequences):%s \n' % BSold)
   fh.write('Total number of motifs in modifiable sections:%s \n' % (BSold - BSintrinsic))
   fh.write('Final sequence >%s \n' % A)
-  fh.write('A fasta file has been created in neutralseq.fa\n')
+  fh.write('A fasta file has been created in example_outputs/neutralseq.fa\n')
   fh.write('A .csv file has been created in sequence.csv, you can use it to visualize the binding site content of your sequence using InSite (http://www.cs.utah.edu/~miriah/insite/) \n')
 
   fh.close()
 
 #save fasta file
   
-  fh = open('neutralseq.fa', 'w')
+  fh = open('example_outputs/neutralseq.fa', 'w')
   fh.write('>%s\n%s' % (Seqname,A))
   fh.close()
       
@@ -467,7 +467,7 @@ def main():
   print 'Final sequence:', A
   print 'Total Binding sites:',  BSold
   print 'Intrinsic Binding sites:', BSintrinsic
-  print 'Output written in file output.txt'
+  print 'Output written in file example_outputs/output.txt'
   print "DONE!"
 		
   os.system('rm -r patser_output')

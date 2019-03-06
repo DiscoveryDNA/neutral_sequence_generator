@@ -1,0 +1,7 @@
+Congratulations, the sequence you designed was created. 
+Running time:0.157000 seconds
+Total number of motifs (including func. sequences):14 
+Total number of motifs in modifiable sections:14 
+Final sequence >ATTACGTAATATTACGTAATGCATAAAAAAATTACGTAATATTACGTAATGGCCATAAAAATTACGTAATTAATCCGGCCATAAAAGGCCATAAAAGGCCATAAAAGGCCATAAAATAATCCATTACGTAATAA 
+A fasta file has been created in example_outputs/neutralseq.fa
+A .csv file has been created in sequence.csv, you can use it to visualize the binding site content of your sequence using InSite (http://www.cs.utah.edu/~miriah/insite/) 
