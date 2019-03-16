@@ -43,7 +43,8 @@ def motif_dist(motifs, probabilities, length):
 		repeats = round((j*length)/len(i))
 		for k in range(0, repeats):
 			dist.append(i)
-	
+
+	dist.append('A')
 	random.shuffle(dist)
 	return dist
 
@@ -54,12 +55,8 @@ def write_seq_txt(dist, motifs):
 	for i in dist:
 		
 		
-		try:
-			mot = str(motifs.pop())
-			seq_txt.write(mot+",")
-			
-		except:
-			seq_txt.write('A'+",")
+		mot = str(motifs.pop())
+		seq_txt.write(mot+",")
 		seq_txt.write(str(i) + "")
 		seq_txt.write("\n")
 
@@ -82,7 +79,7 @@ def write_motif_txt(motifs):
 """Uses Python2 to run siteout.py"""
 import subprocess
 def siteout_call(GC):
-	process = subprocess.run("C:/Python27/python.exe siteout.py .05 .5 "+GC+ " example_outputs/Sequences.txt example_outputs/motifs.txt")
+	process = subprocess.run("C:/Python27/python.exe siteout.py .05 50 "+'50'+ " example_outputs/Sequences.txt example_outputs/motifs.txt")
 
 
 """creates a distribution of numbers that add 
@@ -100,6 +97,8 @@ def distribution(length, probability):
 	for j in rand_col:
 		sum_k.append(round((j/total)*length))
 
+	if sum_k == []:
+		sum_k = [int(length)]
 	return sum_k
 
 """This is the function that develops one neutral sequence using all the previous functions."""
@@ -115,7 +114,7 @@ def main(length, probabilities, GC_percent=50.0):
 
 """This brings together all functions 
 and creates a fasta file that has number randomly generated sequences with a random enhancer functionality"""
-def sequence_generator(length, motif_frequencies,number):
+def sequence_generator(length, motif_frequencies,number, filename="example_outputs/my_example.faa"):
 
     write=[]
     for i in range(0,number):
@@ -131,7 +130,9 @@ def sequence_generator(length, motif_frequencies,number):
         output = SeqRecord(generated_sequence, id=str(i+1)+'|'+enhancer, name="random", description="This is a randomly generated sequence")
         write.append(output)
 
-    SeqIO.write(write, "example_outputs/my_example.faa", "fasta")
+    SeqIO.write(write, filename, "fasta")
 
 #Sample call
-#sequence_generator(1000,[.01,.009,.05,.06],24)
+sequence_generator(1000,[.005,.005,.005,.006],24)
+
+

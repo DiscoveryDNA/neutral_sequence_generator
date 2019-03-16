@@ -184,17 +184,17 @@ def callpatser(A,TFBSold,pval,PWMgc):
   for elem in resultFiles:
     fh = open(os.path.join(resultsDir, elem), 'r')
 
-	
+  
     nameMatch = re.search('(\w+)\_', elem) #extract binding site name from file name
     pwmName = nameMatch.group(1)
     
     pwmWidth = 0 #default
-	
+  
     for line in fh:
       pwmWidthMatch = re.search('^width of the matrix.+?(\d+)', line.strip()) #check if line has width info
       if (pwmWidthMatch):
         pwmWidth = int(pwmWidthMatch.group(1)) #set actual pwm width
-		
+    
       lineRe = '(\w+?)\.txt\s+position=\s+(\d+).+score=\s+([\d\.]+)' #regex of patser output format
       lineMatch = re.search(lineRe, line.strip()) #check if line has binding site info
 
@@ -205,8 +205,8 @@ def callpatser(A,TFBSold,pval,PWMgc):
         TFBSold.start.append(int(lineMatch.group(2))-1)
         TFBSold.length.append(pwmWidth)
         TFBSold.strength.append(float(lineMatch.group(3)))
-	#print	lineMatch.group(2)
-	#print pwmName
+  #print  lineMatch.group(2)
+  #print pwmName
 
     fh.close()
 
@@ -264,10 +264,13 @@ def main():
      lines = f.read().splitlines(0)
 
      for line in lines:
-     	print line
-        seq, typ = line.split(',')
-        Sintro.append(seq)
-        t.append(typ)
+      print line
+      seq, typ = line.split(',')
+      Sintro.append(seq)
+      Sintro.append(typ)
+      t.append(typ)
+      t.append(typ)
+
 
 
   print t
@@ -374,8 +377,8 @@ def main():
 
         #1)randomly choose one bp of the TFBS
         r=numpy.random.randint(TFBSold.start[j],TFBSold.start[j]+TFBSold.length[j]-1)
-		
-	# 2) replace element r in each TFBS found only if it belongs to a modifiable part
+    
+  # 2) replace element r in each TFBS found only if it belongs to a modifiable part
           
         if (tt[r]==0) :
           aux=''.join([random.choice(choice) for x in range(1)]) 
@@ -401,7 +404,7 @@ def main():
         out=True
         
       elif BSnew>0: #if there are still TFBS, compute acceptance probabilities and decide whether to keep or not the new sequence
-        	
+          
         Pbs=math.exp(BSold-BSnew)/(1+math.exp(BSold-BSnew)) #probability based on number of TFBS
         Ptot=Pbs  #total probability, other probabilites could be added here
 
@@ -448,7 +451,7 @@ def main():
   fh.write('Total number of motifs (including func. sequences):%s \n' % BSold)
   fh.write('Total number of motifs in modifiable sections:%s \n' % (BSold - BSintrinsic))
   fh.write('Final sequence >%s \n' % A)
-  fh.write('A fasta file has been created in example_outputs/neutralseq.fa\n')
+  fh.write('A fasta file has been created in neutralseq.fa\n')
   fh.write('A .csv file has been created in sequence.csv, you can use it to visualize the binding site content of your sequence using InSite (http://www.cs.utah.edu/~miriah/insite/) \n')
 
   fh.close()
@@ -467,9 +470,9 @@ def main():
   print 'Final sequence:', A
   print 'Total Binding sites:',  BSold
   print 'Intrinsic Binding sites:', BSintrinsic
-  print 'Output written in file example_outputs/output.txt'
+  print 'Output written in file output.txt'
   print "DONE!"
-		
+    
   os.system('rm -r patser_output')
   os.system('rm -r SyntheticInput')
 
