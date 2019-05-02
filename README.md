@@ -16,6 +16,20 @@ Creates a DNA sequence that has motifs distributed at a specified frequency sepe
   that are most involved in drosophila development. To create your own motif_pfm folder download pfm from JASPAR database,
   I had to modify these by deleting all words and letters before the position frequencies.
   
+## control_seqs
+
+There are three different types of control sequences:
+- There are 500 random sequence files that were generated with no TFBS motifs. These are the neutral_XXX.fa files.
+
+- There are 2000 sequence files that were generated with a motif probability of .25 for each motif. 
+Meaning there are 500 of each of four motifs, where that motif is at a probability of .25 and the rest are at 0.
+These are named freq_0.25XYYY.fa Where the 0.25 represents the probability. X represents which motif it is in the list
+of motifs and YYY represents which number of the 500 it is.
+
+- There are a large number of sequences that had systematically generated motif probabilities. The probability of each 
+motif was able to be controlled independently. Each motif was cycled through a probability ranging from .01-.1. 
+These are named freqrange_X_Y_W_Z.fa Where each letter represents the percent probability that the motif appears in the sequence.
+  
 ## References
 
 Estrada J, Ruiz-Herrero T, Scholes C, Wunderlich Z, DePace AH (2016)
