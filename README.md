@@ -18,6 +18,8 @@ Creates a DNA sequence that has motifs distributed at a specified frequency sepe
   
 ## control_seqs
 
+-Motifs used (in order): hb, bcd, cad, gt.
+
 There are three different types of control sequences:
 - There are 500 random sequence files that were generated with no TFBS motifs. These are the neutral_XXX.fa files.
 
